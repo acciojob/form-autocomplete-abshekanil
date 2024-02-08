@@ -1,37 +1,38 @@
-//your JS code here. If required.
-const name = document.getElementById("name");
-
-const email = document.getElementById("email");
-
-const phone = document.getElementById("phone");
-const submitBtn = document.getElementById("btn");
-submitBtn.innerText = "submit";
-
-let formDataArray = [];
-
-submitBtn.addEventListener("click", function(){
-
-	let formData = {
-		name: name.value,
-		email: email.value,
-		phone: phone.value
+function saveData(){
+	let data = {
+		name: document.getElementById("name").value,
+		email: document.getElementById("email").value,
+		phone: document.getElementById("phone").value
 	};
 
-	formDataArray.push(formData);
+	let forms = localStorage.getItem("forms");
+	if(forms){
+		forms = JSON.parse(forms);
+	}else
+	{
+		forms = [data];
+	}
+	localStorage.setItem("forms", JSON.stringify(forms));
+}
 
-	localStorage.setItem("formData", JSON.stringify(formDataArray));
+function autoFillForm(){
+	let forms = localStorage.getItem("forms");
+	if(forms){
+		forms = JSON.parse(forms);
+		let lastForm = forms[forms.length - 1];
+		document.getElementById("name").value = lastForm.name;
+		document.getElementById("email").value = lastForm.email;
+		document.getElementById("phone").value = lastForm.phone;
+	}
+	
+}
+
+const submitBtn = document.getElementById("btn");
+
+submitBtn.addEventListener("click", function(){
+	saveData();
 });
 
 window.addEventListener("load", function(){
-	formDataArray = JSON.parse(localStorage.getItem("formData"));
-
-	if(formDataArray.length > 0)
-	{
-		const lastFormData = formDataArray[formDataArray.length - 1];
-		name.value = lastFormData.name;
-		email.value = lastFormData.email;
-		phone.value = lastFormData.phone;
-	}
+	autoFillForm();
 });
-
-
