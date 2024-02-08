@@ -5,6 +5,7 @@ const email = document.getElementById("email");
 const job = document.getElementById("job");
 const phone = document.getElementById("phone");
 const submitBtn = document.getElementById("btn");
+submitBtn.innerText = "submit";
 
 submitBtn.addEventListener("click", function () {
 	localStorage.setItem("name", name.value);
