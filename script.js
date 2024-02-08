@@ -1,26 +1,37 @@
 //your JS code here. If required.
 const name = document.getElementById("name");
-const age = document.getElementById("age");
+
 const email = document.getElementById("email");
-const job = document.getElementById("job");
+
 const phone = document.getElementById("phone");
 const submitBtn = document.getElementById("btn");
 submitBtn.innerText = "submit";
 
-submitBtn.addEventListener("click", function () {
-	localStorage.setItem("name", name.value);
-	localStorage.setItem("age", age.value);
-	localStorage.setItem("email", email.value);
-	localStorage.setItem("job", job.value);
-	localStorage.setItem("phone", phone.value);
+let formDataArray = [];
+
+submitBtn.addEventListener("click", function(){
+
+	let formData = {
+		name: name.value,
+		email: email.value,
+		phone: phone.value
+	};
+
+	formDataArray.push(formData);
+
+	localStorage.setItem("formData", JSON.stringify(formDataArray));
 });
 
-window.addEventListener("load",function (){
-	name.value = localStorage.getItem("name");
-	age.value = localStorage.getItem("age");
-	email.value = localStorage.getItem("email");
-	job.value = localStorage.getItem("job");
-	phone.value = localStorage.getItem("phone");
+window.addEventListener("load", function(){
+	formDataArray = JSON.parse(localStorage.getItem("formData")) || [];
+
+	if(formDataArray.length > 0)
+	{
+		const lastFormData = formDataArray[formDataArray.length - 1];
+		name.value = lastFormData.name;
+		email.value = lastFormData.email;
+		phone.value = lastFormData.phone;
+	}
 });
 
 
