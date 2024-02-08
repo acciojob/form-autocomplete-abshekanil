@@ -6,14 +6,20 @@ const job = document.getElementById("job");
 const number = document.getElementById("number");
 const submitBtn = document.getElementById("btn");
 
-localStorage.setItem(name, name.value);
-localStorage.setItem(age, age.value);
-localStorage.setItem(email, email.value);
-localStorage.setItem(job, job.value);
-localStorage.setItem(number, number.value);
+submitBtn.addEventListener("click", function () {
+	localStorage.setItem("name", name.value);
+	localStorage.setItem("age", age.value);
+	localStorage.setItem("email", email.value);
+	localStorage.setItem("job", job.value);
+	localStorage.setItem("number", number.value);
+});
 
-localStorage.getItem(name);
-localStorage.getItem(age);
-localStorage.getItem(email);
-localStorage.getItem(job);
-localStorage.getItem(number);
+window.addEventListener("load",function (){
+	name.value = localStorage.getItem("name");
+	age.value = localStorage.getItem("age");
+	email.value = localStorage.getItem("email");
+	job.value = localStorage.getItem("job");
+	number.value = localStorage.getItem("number");
+});
+
+
