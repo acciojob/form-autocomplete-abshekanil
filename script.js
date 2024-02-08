@@ -23,7 +23,7 @@ submitBtn.addEventListener("click", function(){
 });
 
 window.addEventListener("load", function(){
-	formDataArray = JSON.parse(localStorage.getItem("formData")) || [];
+	formDataArray = JSON.parse(localStorage.getItem("formData"));
 
 	if(formDataArray.length > 0)
 	{
