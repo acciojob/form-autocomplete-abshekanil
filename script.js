@@ -3,7 +3,7 @@ const name = document.getElementById("name");
 const age = document.getElementById("age");
 const email = document.getElementById("email");
 const job = document.getElementById("job");
-const number = document.getElementById("number");
+const phone = document.getElementById("phone");
 const submitBtn = document.getElementById("btn");
 
 submitBtn.addEventListener("click", function () {
@@ -11,7 +11,7 @@ submitBtn.addEventListener("click", function () {
 	localStorage.setItem("age", age.value);
 	localStorage.setItem("email", email.value);
 	localStorage.setItem("job", job.value);
-	localStorage.setItem("number", number.value);
+	localStorage.setItem("phone", phone.value);
 });
 
 window.addEventListener("load",function (){
@@ -19,7 +19,7 @@ window.addEventListener("load",function (){
 	age.value = localStorage.getItem("age");
 	email.value = localStorage.getItem("email");
 	job.value = localStorage.getItem("job");
-	number.value = localStorage.getItem("number");
+	phone.value = localStorage.getItem("phone");
 });
 
 
